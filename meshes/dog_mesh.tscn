@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpsxd4glwv6wc"]
+
+[ext_resource type="PackedScene" uid="uid://m2eqdth7d4lp" path="res://meshes/dog_updatedc3.glb" id="1_n22ln"]
+
+[node name="dog_updatedc3" instance=ExtResource("1_n22ln")]
+
+[node name="Armature" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01671, 10.0627)
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/6/rotation = Quaternion(-0.706735, 0, 0, 0.707478)
+bones/9/rotation = Quaternion(-0.697962, 0, 0, 0.716135)
+bones/11/rotation = Quaternion(-3.58474e-07, 0.82827, 0.560328, -8.52433e-07)
+bones/14/rotation = Quaternion(-0.750606, -4.52937e-08, 1.63987e-08, 0.66075)
+bones/17/rotation = Quaternion(-0.686727, -9.40284e-09, 5.23894e-08, 0.726916)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "ArmatureAction"

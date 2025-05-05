@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://byq2abwls81gb"]
+
+[ext_resource type="PackedScene" uid="uid://4jpentt6jnys" path="res://grass pieces/meshes/flat.glb" id="1_8hh5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnfdu"]
+albedo_color = Color(0, 0.470588, 0, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_j1k35"]
+data = PackedVector3Array(-1, 0, 1, 1, 0, -1, 1, 0, 1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="flat" instance=ExtResource("1_8hh5g")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_tnfdu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_j1k35")

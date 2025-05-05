@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcr43yorsjfn"]
+
+[ext_resource type="Script" path="res://scripts/menu_buttons.gd" id="2_lyyym"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t85sv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37kng"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main-Vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main-Vbox"]
+layout_mode = 2
+theme_override_constants/outline_size = 69
+theme_override_font_sizes/font_size = 150
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main-Vbox"]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="Main-Vbox/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_t85sv")
+
+[node name="Label" type="Label" parent="Main-Vbox/HBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "To play right now just kill as many dogs as possible before you die. (in the future there will be more things like boses and other levels)"
+autowrap_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="Main-Vbox/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxFlat_t85sv")
+
+[node name="HSeparator" type="HSeparator" parent="Main-Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxFlat_37kng")
+
+[node name="Button" type="Button" parent="Main-Vbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "EXIT TO MENU"
+script = ExtResource("2_lyyym")
+type = "menu"
+
+[node name="HSeparator2" type="HSeparator" parent="Main-Vbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxFlat_37kng")
+
+[connection signal="pressed" from="Main-Vbox/Button" to="Main-Vbox/Button" method="_on_pressed"]

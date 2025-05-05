@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://87lfducrmryn"]
+
+[ext_resource type="PackedScene" uid="uid://byq2abwls81gb" path="res://grass pieces/scenes/grass_flat.tscn" id="1_hu6vi"]
+
+[node name="flat" type="Node3D"]
+
+[node name="flat" parent="." instance=ExtResource("1_hu6vi")]
+
+[node name="flat2" parent="." instance=ExtResource("1_hu6vi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="flat3" parent="." instance=ExtResource("1_hu6vi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="flat4" parent="." instance=ExtResource("1_hu6vi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="flat5" parent="." instance=ExtResource("1_hu6vi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="flat6" parent="." instance=ExtResource("1_hu6vi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="flat7" parent="." instance=ExtResource("1_hu6vi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="flat8" parent="." instance=ExtResource("1_hu6vi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="flat9" parent="." instance=ExtResource("1_hu6vi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)

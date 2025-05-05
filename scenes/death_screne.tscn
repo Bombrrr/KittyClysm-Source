@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2cays65stqi7"]
+
+[ext_resource type="Texture2D" uid="uid://brh3ukwyadqfx" path="res://meshes/Screenshot 2025-05-04 202707.png" id="1_071r1"]
+[ext_resource type="Script" path="res://scripts/menu_buttons.gd" id="2_hu6jg"]
+[ext_resource type="Script" path="res://scripts/label_2.gd" id="2_qbh2b"]
+
+[node name="death_screne" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_071r1")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0, 0, 1)
+theme_override_font_sizes/font_size = 200
+text = "69420
+"
+horizontal_alignment = 1
+script = ExtResource("2_qbh2b")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Innocent Dogs Wanting To Hug You
+Were Slain By Your Hands"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "EXIT TO MENU"
+script = ExtResource("2_hu6jg")
+type = "menu"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/Button" to="VBoxContainer/Button" method="_on_pressed"]

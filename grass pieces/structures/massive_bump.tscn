@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://kfjaki5sq3dh"]
+
+[ext_resource type="PackedScene" uid="uid://cxy3065flg660" path="res://grass pieces/scenes/grass_1_corner.tscn" id="1_wmo6o"]
+[ext_resource type="PackedScene" uid="uid://byq2abwls81gb" path="res://grass pieces/scenes/grass_flat.tscn" id="2_mxeyp"]
+[ext_resource type="PackedScene" uid="uid://dbytjd04mr42g" path="res://grass pieces/scenes/grass_flat_slope.tscn" id="3_o34pw"]
+
+[node name="massive_bump" type="Node3D"]
+
+[node name="1_up" parent="." instance=ExtResource("1_wmo6o")]
+
+[node name="1_up2" parent="." instance=ExtResource("1_wmo6o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 8)
+
+[node name="1_up3" parent="." instance=ExtResource("1_wmo6o")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8, 0, 8)
+
+[node name="1_up4" parent="." instance=ExtResource("1_wmo6o")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 8, 0, 0)
+
+[node name="1_up5" parent="." instance=ExtResource("1_wmo6o")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 1, 6)
+
+[node name="1_up6" parent="." instance=ExtResource("1_wmo6o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 1, 6)
+
+[node name="1_up7" parent="." instance=ExtResource("1_wmo6o")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 1, 2)
+
+[node name="1_up8" parent="." instance=ExtResource("1_wmo6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 2)
+
+[node name="flat" parent="." instance=ExtResource("2_mxeyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, 4)
+
+[node name="2_up" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="2_up2" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="2_up3" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="2_up4" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 2)
+
+[node name="2_up5" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 2)
+
+[node name="2_up6" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 4)
+
+[node name="2_up7" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 6)
+
+[node name="2_up8" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 1, 4)
+
+[node name="2_up9" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.99953, 0, 8.00037)
+
+[node name="2_up10" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.99953, 0, 8.00037)
+
+[node name="2_up11" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.99953, 0, 8.00037)
+
+[node name="2_up12" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3.99953, 1, 6.00037)
+
+[node name="2_up13" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 7.99953, 0, 6.00037)
+
+[node name="2_up14" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 7.99953, 0, 4.00037)
+
+[node name="2_up15" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 7.99953, 0, 2.00037)
+
+[node name="2_up16" parent="." instance=ExtResource("3_o34pw")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 5.99953, 1, 4.00037)

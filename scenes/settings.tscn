@@ -1,0 +1,140 @@
+[gd_scene load_steps=5 format=3 uid="uid://crtqhe2qc42t5"]
+
+[ext_resource type="StyleBox" uid="uid://c5fsf7bej0l4" path="res://controls.tres" id="1_y8m6k"]
+[ext_resource type="Script" path="res://scripts/cam_sense.gd" id="2_mn7ji"]
+[ext_resource type="Script" path="res://scripts/menu_buttons.gd" id="2_yyx7q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wso56"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main-Vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Main-Vbox"]
+layout_mode = 2
+theme_override_constants/outline_size = 69
+theme_override_font_sizes/font_size = 150
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button-Vbox" type="VBoxContainer" parent="Main-Vbox"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Movement" type="VBoxContainer" parent="Main-Vbox/Button-Vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Main-Vbox/Button-Vbox/Movement"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("1_y8m6k")
+text = "MOVEMENT"
+horizontal_alignment = 1
+
+[node name="controls" type="HBoxContainer" parent="Main-Vbox/Button-Vbox/Movement"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="forward" type="Label" parent="Main-Vbox/Button-Vbox/Movement/controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("1_y8m6k")
+text = "FORWARD: W"
+
+[node name="backward" type="Label" parent="Main-Vbox/Button-Vbox/Movement/controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("1_y8m6k")
+text = "BACKWARD: S"
+
+[node name="left" type="Label" parent="Main-Vbox/Button-Vbox/Movement/controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("1_y8m6k")
+text = "LEFT: A"
+
+[node name="right" type="Label" parent="Main-Vbox/Button-Vbox/Movement/controls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = ExtResource("1_y8m6k")
+text = "RIGHT: D"
+
+[node name="Camera" type="VBoxContainer" parent="Main-Vbox/Button-Vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Main-Vbox/Button-Vbox/Camera"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = ExtResource("1_y8m6k")
+text = "CAMERA SENSITIVITY"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Main-Vbox/Button-Vbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "EXIT TO MENU"
+script = ExtResource("2_yyx7q")
+type = "menu"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = -122.0
+offset_right = 450.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_constants/grabber_offset = 120
+min_value = 1.0
+value = 25.0
+script = ExtResource("2_mn7ji")
+
+[node name="HSlider2" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -572.0
+offset_top = -122.0
+offset_right = 571.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme_override_styles/slider = SubResource("StyleBoxFlat_wso56")
+min_value = -12.0
+max_value = 113.0
+value = 25.0
+script = ExtResource("2_mn7ji")
+
+[connection signal="pressed" from="Main-Vbox/Button-Vbox/Button" to="Main-Vbox/Button-Vbox/Button" method="_on_pressed"]
+[connection signal="value_changed" from="HSlider" to="HSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="HSlider2" to="HSlider2" method="_on_value_changed"]

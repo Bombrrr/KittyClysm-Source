@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://kkhd18u5yf8l"]
+
+[ext_resource type="Script" path="res://scripts/menu_buttons.gd" id="1_m6kpu"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Main-Vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Title" type="Label" parent="Main-Vbox"]
+layout_mode = 2
+theme_override_constants/outline_size = 69
+theme_override_font_sizes/font_size = 150
+text = "KITTYCLYSM"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button-Vbox" type="VBoxContainer" parent="Main-Vbox"]
+layout_mode = 2
+
+[node name="Play-Button" type="Button" parent="Main-Vbox/Button-Vbox"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 69
+text = "PLAY"
+script = ExtResource("1_m6kpu")
+type = "play"
+
+[node name="Settings-Button" type="Button" parent="Main-Vbox/Button-Vbox"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 69
+text = "SETTINGS"
+script = ExtResource("1_m6kpu")
+type = "settings"
+
+[node name="How-To-Button" type="Button" parent="Main-Vbox/Button-Vbox"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 69
+text = "how to play"
+script = ExtResource("1_m6kpu")
+type = "howto"
+
+[node name="Exit-Button" type="Button" parent="Main-Vbox/Button-Vbox"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 69
+text = "EXIT"
+script = ExtResource("1_m6kpu")
+type = "exit"
+
+[node name="Title2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 560.0
+offset_top = -268.0
+offset_right = 1712.0
+offset_bottom = -63.0
+rotation = 0.507161
+theme_override_colors/font_color = Color(1, 0.784314, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_font_sizes/font_size = 100
+text = "BETA
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Main-Vbox/Button-Vbox/Play-Button" to="Main-Vbox/Button-Vbox/Play-Button" method="_on_pressed"]
+[connection signal="pressed" from="Main-Vbox/Button-Vbox/Settings-Button" to="Main-Vbox/Button-Vbox/Settings-Button" method="_on_pressed"]
+[connection signal="pressed" from="Main-Vbox/Button-Vbox/How-To-Button" to="Main-Vbox/Button-Vbox/How-To-Button" method="_on_pressed"]
+[connection signal="pressed" from="Main-Vbox/Button-Vbox/Exit-Button" to="Main-Vbox/Button-Vbox/Exit-Button" method="_on_pressed"]

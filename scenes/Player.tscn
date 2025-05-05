@@ -1,0 +1,303 @@
+[gd_scene load_steps=19 format=3 uid="uid://ddghsncb2ns6b"]
+
+[ext_resource type="PackedScene" uid="uid://f0jji4mkyo0o" path="res://meshes/catanim.glb" id="1_cm6pg"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_tpjgj"]
+[ext_resource type="Texture2D" uid="uid://b50etutljfn38" path="res://images(1).png" id="3_myf8o"]
+[ext_resource type="Script" path="res://scripts/texture_rect_2.gd" id="4_8xult"]
+[ext_resource type="Texture2D" uid="uid://cylxeg2opukca" path="res://meshes/cat_heart-removebg-preview(1).png" id="4_wsnus"]
+[ext_resource type="Texture2D" uid="uid://cxxtmwb7kwcvd" path="res://meshes/cat_heart-removebg-preview(2).png" id="5_jyino"]
+[ext_resource type="Texture2D" uid="uid://bu8w5165x5ptt" path="res://meshes/daw-removebg-preview(1).png" id="6_ayoxk"]
+[ext_resource type="Script" path="res://scripts/label.gd" id="6_en125"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="9_cid5a"]
+[ext_resource type="Texture2D" uid="uid://b8ejwshjs2hoh" path="res://meshes/Untitled(3).jpg" id="9_e7f7n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u442"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gbeet"]
+radius = 0.388528
+height = 1.66921
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_b3m2l"]
+radius = 0.43612
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_58x1l"]
+radius = 0.693785
+height = 1.38757
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg70o"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8sxm"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j25aq"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.572549)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lq8ag"]
+material = SubResource("StandardMaterial3D_j25aq")
+radius = 0.694
+height = 1.388
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+script = ExtResource("1_tpjgj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+shape = SubResource("CapsuleShape3D_1u442")
+
+[node name="catanim" parent="." instance=ExtResource("1_cm6pg")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.400686, 0.308494)
+
+[node name="TwistPivot" type="Node3D" parent="."]
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="RayCast3D" type="RayCast3D" parent="TwistPivot/PitchPivot"]
+target_position = Vector3(0, 0, 3)
+
+[node name="CamPos" type="Node3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Area3D" type="Area3D" parent="." groups=["player"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.32912, -0.108771)
+shape = SubResource("CapsuleShape3D_gbeet")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.697449, 0.686419)
+shape = SubResource("SphereShape3D_b3m2l")
+
+[node name="Area3D2" type="Area3D" parent="." groups=["hurt"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.382855, 1.12858)
+shape = SubResource("CapsuleShape3D_58x1l")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = 19.0
+offset_right = -14.0
+offset_bottom = 313.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_sg70o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_v8sxm")
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.5
+offset_top = -318.5
+offset_right = 318.5
+offset_bottom = 318.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_myf8o")
+expand_mode = 1
+script = ExtResource("4_8xult")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -46.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("3_myf8o")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 50
+theme_override_font_sizes/font_size = 200
+text = "You Get Die
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+modulate = Color(0.760784, 0, 0, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_wsnus")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+modulate = Color(0.760784, 0, 0, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_wsnus")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+modulate = Color(0.760784, 0, 0, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_wsnus")
+expand_mode = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer2"]
+modulate = Color(0.760784, 0, 0, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_jyino")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HBoxContainer2"]
+modulate = Color(0.760784, 0, 0, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_jyino")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/HBoxContainer2"]
+modulate = Color(0.760784, 0, 0, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("5_jyino")
+expand_mode = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.270588, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "0
+"
+script = ExtResource("6_en125")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer3"]
+modulate = Color(1, 0.784314, 1, 1)
+self_modulate = Color(0.270588, 0, 0, 1)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("6_ayoxk")
+expand_mode = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
+modulate = Color(0.400698, 0.400698, 0.400698, 0.584314)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_e7f7n")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 69
+theme_override_font_sizes/font_size = 150
+text = "Pause Menu"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 75
+text = "Resume Game"
+script = ExtResource("9_cid5a")
+type = "resume"
+
+[node name="Button2" type="Button" parent="CanvasLayer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 75
+text = "Settings"
+script = ExtResource("9_cid5a")
+type = "settings"
+
+[node name="Button3" type="Button" parent="CanvasLayer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 75
+text = "Exit to Menu"
+script = ExtResource("9_cid5a")
+type = "exit"
+
+[node name="hit delay" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="Death" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.382855, 1.129)
+mesh = SubResource("CapsuleMesh_lq8ag")
+skeleton = NodePath("../Area3D2")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button" to="CanvasLayer2/VBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button2" to="CanvasLayer2/VBoxContainer/Button2" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button3" to="CanvasLayer2/VBoxContainer/Button3" method="_on_pressed"]
+[connection signal="timeout" from="hit delay" to="." method="_on_hit_delay_timeout"]
+[connection signal="timeout" from="Death" to="." method="_on_death_timeout"]

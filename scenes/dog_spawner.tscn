@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dir57lja5c2h6"]
+
+[ext_resource type="Texture2D" uid="uid://bu8w5165x5ptt" path="res://meshes/daw-removebg-preview(1).png" id="1_6arfi"]
+[ext_resource type="Script" path="res://scripts/dog_spawner.gd" id="1_bx6xt"]
+
+[node name="dog_spawner" type="Node3D"]
+script = ExtResource("1_bx6xt")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+modulate = Color(0.360784, 0, 0, 1)
+billboard = 1
+texture = ExtResource("1_6arfi")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

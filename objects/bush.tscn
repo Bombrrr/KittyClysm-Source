@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b553e2rousbyl"]
+
+[ext_resource type="PackedScene" uid="uid://bw2n52smj2ur7" path="res://meshes/bush.glb" id="1_xlvnb"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gyb8c"]
+radius = 1.68798
+
+[node name="bush" instance=ExtResource("1_xlvnb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." index="1" groups=["hidden"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.105142, 0)
+shape = SubResource("SphereShape3D_gyb8c")
