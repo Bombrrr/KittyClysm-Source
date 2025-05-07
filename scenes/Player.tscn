@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ddghsncb2ns6b"]
+[gd_scene load_steps=21 format=3 uid="uid://ddghsncb2ns6b"]
 
 [ext_resource type="PackedScene" uid="uid://f0jji4mkyo0o" path="res://meshes/catanim.glb" id="1_cm6pg"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_tpjgj"]
@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://cylxeg2opukca" path="res://meshes/cat_heart-removebg-preview(1).png" id="4_wsnus"]
 [ext_resource type="Texture2D" uid="uid://cxxtmwb7kwcvd" path="res://meshes/cat_heart-removebg-preview(2).png" id="5_jyino"]
 [ext_resource type="Texture2D" uid="uid://bu8w5165x5ptt" path="res://meshes/daw-removebg-preview(1).png" id="6_ayoxk"]
-[ext_resource type="Script" path="res://scripts/label.gd" id="6_en125"]
 [ext_resource type="Script" path="res://scripts/pause_menu.gd" id="9_cid5a"]
 [ext_resource type="Texture2D" uid="uid://b8ejwshjs2hoh" path="res://meshes/Untitled(3).jpg" id="9_e7f7n"]
+[ext_resource type="AudioStream" uid="uid://sw74ru5v0suf" path="res://Recording (6).mp3" id="11_4165l"]
+[ext_resource type="AudioStream" uid="uid://wucrfc2tf2jf" path="res://Recording (10).mp3" id="12_tr4q2"]
+[ext_resource type="AudioStream" uid="uid://y7sy6l0gp6pj" path="res://Recording (12).mp3" id="13_aak2t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u442"]
 
@@ -21,8 +23,8 @@ height = 1.66921
 radius = 0.43612
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_58x1l"]
-radius = 0.693785
-height = 1.38757
+radius = 1.11975
+height = 2.26387
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sg70o"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -36,7 +38,7 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j25aq"]
 transparency = 1
-albedo_color = Color(1, 0, 0, 0.572549)
+albedo_color = Color(1, 0, 0, 0.372549)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lq8ag"]
 material = SubResource("StandardMaterial3D_j25aq")
@@ -74,7 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.32912, -0.108771)
 shape = SubResource("CapsuleShape3D_gbeet")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.697449, 0.686419)
 shape = SubResource("SphereShape3D_b3m2l")
 
@@ -221,7 +223,6 @@ theme_override_colors/font_color = Color(0.270588, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "0
 "
-script = ExtResource("6_en125")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer3"]
 modulate = Color(1, 0.784314, 1, 1)
@@ -294,6 +295,22 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.3
 mesh = SubResource("CapsuleMesh_lq8ag")
 skeleton = NodePath("../Area3D2")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_4165l")
+volume_db = -10.0
+pitch_scale = 1.1
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_tr4q2")
+volume_db = -20.0
+pitch_scale = 3.0
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_aak2t")
+pitch_scale = 0.8
+
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_exited" from="Area3D" to="." method="_on_area_3d_area_exited"]
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button" to="CanvasLayer2/VBoxContainer/Button" method="_on_pressed"]
@@ -301,3 +318,4 @@ skeleton = NodePath("../Area3D2")
 [connection signal="pressed" from="CanvasLayer2/VBoxContainer/Button3" to="CanvasLayer2/VBoxContainer/Button3" method="_on_pressed"]
 [connection signal="timeout" from="hit delay" to="." method="_on_hit_delay_timeout"]
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

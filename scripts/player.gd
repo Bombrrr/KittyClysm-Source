@@ -7,6 +7,7 @@ var pitch_input := 0.0
 @onready var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
+
 @onready var direction = ($TwistPivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 @onready var location = 0
 @onready var length = 3
@@ -21,6 +22,7 @@ const JUMP_VELOCITY = 4.5
 
 
 func _ready() -> void:
+	$TwistPivot/PitchPivot/Camera3D.current = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	$TwistPivot/PitchPivot/RayCast3D.add_exception($".")
 	change_cam_sens()
@@ -44,6 +46,8 @@ func _physics_process(delta: float) -> void:
 		direction = ($TwistPivot.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 		if direction:
+			if not $AudioStreamPlayer2.playing:
+				$AudioStreamPlayer2.play(0.3)
 			anim.play("Walk Anim", -1, 10)
 			velocity.x = direction.x * SPEED
 			velocity.z = direction.z * SPEED
@@ -72,12 +76,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		$CanvasLayer2.show()
 		get_tree().paused = true
 	
-	
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 	
 	if Input.is_action_just_pressed("attack"):
 		if not global.timeout:
+			$AudioStreamPlayer.play(4.8)
+			$Timer.start(0.3)
 			$"hit delay".start()
 			global.attack_time = 0
 	
@@ -89,7 +94,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	length = clamp(length, 1, 10)
 	
-	_set_camera_location()
+	
+	_set_camera_location(false)
 	
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -97,17 +103,24 @@ func _unhandled_input(event: InputEvent) -> void:
 			pitch_input = event.relative.y * mouse_sensitivity
 
 # sets camera location to either the max length or when the raycast hits an object
-func _set_camera_location():
-	$TwistPivot/PitchPivot/RayCast3D.set_target_position(Vector3(0, 0, length))
-	if $TwistPivot/PitchPivot/RayCast3D.is_colliding() and not is_ded:
-		location = $TwistPivot/PitchPivot/RayCast3D.get_collision_point()
-		$TwistPivot/PitchPivot/Camera3D.global_position = location
-		$TwistPivot/PitchPivot/Camera3D.position.z -= 0.25
-	else:
+func _set_camera_location(debug):
+	if debug:
 		$TwistPivot/PitchPivot/CamPos.position.z = length
 		$TwistPivot/PitchPivot/Camera3D.global_position = $TwistPivot/PitchPivot/CamPos.global_position
+		
+	else:
+		$TwistPivot/PitchPivot/RayCast3D.set_target_position(Vector3(0, 0, length))
+		if $TwistPivot/PitchPivot/RayCast3D.is_colliding() and not is_ded:
+			location = $TwistPivot/PitchPivot/RayCast3D.get_collision_point()
+			$TwistPivot/PitchPivot/Camera3D.global_position = location
+			$TwistPivot/PitchPivot/Camera3D.position.z -= 0.25
+		else:
+			$TwistPivot/PitchPivot/CamPos.position.z = length
+			$TwistPivot/PitchPivot/Camera3D.global_position = $TwistPivot/PitchPivot/CamPos.global_position
 
 func _get_die():
+	$AudioStreamPlayer3.play(5.9)
+	$Timer.start(1)
 	get_tree().queue_delete($CollisionShape3D)
 	get_tree().queue_delete($Area3D)
 	get_tree().queue_delete($Area3D2)
@@ -159,3 +172,9 @@ func _on_death_timeout() -> void:
 
 func change_cam_sens():
 	mouse_sensitivity = 0.003*(global.cam_sense/25)
+
+
+func _on_timer_timeout() -> void:
+	$AudioStreamPlayer.stop()
+	$AudioStreamPlayer3.stop()
+	$CanvasLayer/HBoxContainer3/Label.text = var_to_str(global.enemies_killed)

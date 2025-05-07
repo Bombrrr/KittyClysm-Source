@@ -11,8 +11,8 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	dog_inst = dog.instantiate()
-	tim = clamp(tim/((global.enemies_killed+4)/4), 1, 40)
+	tim = clamp(tim/((global.enemies_killed+10)/10), 1, 40)
 	$Timer.start(tim)
-	tim = randi_range(10, 30)
+	tim = randi_range(20, 30)
 	dog_inst.position = self.global_position
 	add_sibling(dog_inst)

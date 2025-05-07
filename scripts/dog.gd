@@ -48,18 +48,19 @@ func _physics_process(delta: float) -> void:
 func update_location(target_location):
 	nav.target_position = target_location
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if not is_dead:
 		if in_attack:
-			if Input.is_action_just_released("attack"):
+			if Input.is_action_just_pressed("attack"):
 				if not global.timeout:
 					if not global.enemy_killed:
 						global.enemies_killed += 1
 						global.enemy_killed = true
 						is_dead = true
-						get_tree().queue_delete($CollisionShape3D)
-						get_tree().queue_delete($CollisionShape3D2)
-						get_tree().queue_delete($Area3D)
+						$AudioStreamPlayer.play()
+						#$CollisionShape3D.queue_free()
+						$CollisionShape3D2.queue_free()
+						$Area3D.queue_free()
 						$Timer.stop()
 						$wait.start()
 

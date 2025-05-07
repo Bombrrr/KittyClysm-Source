@@ -9,6 +9,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Main-Vbox" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -67,11 +69,15 @@ script = ExtResource("1_m6kpu")
 type = "exit"
 
 [node name="Title2" type="Label" parent="."]
-layout_mode = 2
-offset_left = 560.0
-offset_top = -268.0
-offset_right = 1712.0
-offset_bottom = -63.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -580.0
+offset_top = -277.0
+offset_right = 572.0
+offset_bottom = -72.0
+grow_horizontal = 0
 rotation = 0.507161
 theme_override_colors/font_color = Color(1, 0.784314, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -82,7 +88,27 @@ text = "BETA
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.95
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.772549, 0, 0, 1)
+theme_override_constants/outline_size = 169
+theme_override_font_sizes/font_size = 420
+text = "69
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Main-Vbox/Button-Vbox/Play-Button" to="Main-Vbox/Button-Vbox/Play-Button" method="_on_pressed"]
 [connection signal="pressed" from="Main-Vbox/Button-Vbox/Settings-Button" to="Main-Vbox/Button-Vbox/Settings-Button" method="_on_pressed"]
 [connection signal="pressed" from="Main-Vbox/Button-Vbox/How-To-Button" to="Main-Vbox/Button-Vbox/How-To-Button" method="_on_pressed"]
 [connection signal="pressed" from="Main-Vbox/Button-Vbox/Exit-Button" to="Main-Vbox/Button-Vbox/Exit-Button" method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="Main-Vbox/Button-Vbox/Exit-Button" method="_on_timer_timeout"]
